@@ -1,0 +1,29 @@
+// Training
+curl -X POST -u "apikey:{your_api_key}" -F "beagle_positive_examples=@beagle.zip" -F "goldenretriever_positive_examples=@golden-retriever.zip" -F "husky_positive_examples=@husky.zip" -F "negative_examples=@cats.zip" -F "name=dogs" "https://gateway.watsonplatform.net/visual-recognition/api/v3/classifiers?version=2018-03-19"
+
+{
+    "classifier_id": "dogs_1620145458",
+    "name": "dogs",
+    "status": "training",
+    "owner": "9efb04f9-9962-4f2e-abf1-a3d533e84a01",
+    "created": "2018-06-28T21:53:39.164Z",
+    "updated": "2018-06-28T21:53:39.164Z",
+    "classes": [
+        {
+            "class": "beagle"
+        },
+        {
+            "class": "husky"
+        },
+        {
+            "class": "goldenretriever"
+        }
+    ],
+    "core_ml_enabled": true
+}
+
+// Classify
+curl -X POST -u "apikey:{your_api_key}" -F "classifier_ids={your_classifier_id}" -F "images_file=@cat.jpg" -F "owners=me" "https://gateway.watsonplatform.net/visual-recognition/api/v3/classify?version=2018-03-19"
+
+// Query classifier status
+curl -u "apikey:0O__S9QlZSt_YkPjYt89gJLsJVMKtPW_zJheYCb_mxHH" "https://gateway.watsonplatform.net/visual-recognition/api/v3/classifiers/{your_classifier_id}?version=2018-03-19"
